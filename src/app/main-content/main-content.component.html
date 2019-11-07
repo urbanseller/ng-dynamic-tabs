@@ -1,0 +1,20 @@
+<div class="main-content">
+
+
+    <ngb-tabset [activeId]="activeTabUrl" (tabChange)="onTabChange($event)" [destroyOnHide]="false">
+        <ngb-tab *ngFor="let tab of tabs ; let index = index" [id]="tab.url">
+            <ng-template ngbTabTitle>
+                <span>{{tab.name}}</span>
+                <span (click)="closeTab(index, $event)">&times;</span>
+            </ng-template>
+            <ng-template ngbTabContent>
+                <ng-container *ngIf='tab.url =="/movies"'>
+                    <app-movies></app-movies>
+                </ng-container>
+                <ng-container *ngIf='tab.url && tab.url.startsWith("/songs")'>
+                    <app-songs></app-songs>
+                </ng-container>
+            </ng-template>
+        </ngb-tab>
+    </ngb-tabset>
+</div>
